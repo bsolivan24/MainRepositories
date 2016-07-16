@@ -1,0 +1,69 @@
+﻿@model VolumeCalculatorWebApp.Models.VolumeViewModel
+
+@{
+    ViewBag.Title = "Volume Calculator";
+}
+
+<div class="jumbotron">
+    <h1>Volume Calculator</h1>
+    <p class="lead">This website allows you to calculate various object's voulume</p>
+</div>
+
+@using (Html.BeginForm("CalculateCylinder", "VolumeCalculator", FormMethod.Post))
+{
+    <div class="row">
+        <div class="h2">Cylinder</div>
+        <div class="col-md-10">
+            @Html.LabelFor(m => m.CylinderProperties.Radius, new { @class = "col-md-2 control-label" })
+            @Html.TextBoxFor(m => m.CylinderProperties.Radius, new { @class = "form-control" })
+            <br />
+            @Html.LabelFor(m => m.CylinderProperties.Height, new { @class = "col-md-2 control-label" })
+            @Html.TextBoxFor(m => m.CylinderProperties.Height, new { @class = "form-control" })
+            <br />
+            @Html.LabelFor(m => m.CylinderProperties.Volume, new { @class = "col-md-2 control-label" })
+            @Html.TextBoxFor(m => m.CylinderProperties.Volume, new { @class = "form-control" })
+            <br />
+            <div class="col-md-offset-5">
+                <input type="submit" value="Calculate" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+@using (Html.BeginForm("CalculateCone", "VolumeCalculator", FormMethod.Post))
+{
+    <div class="row">
+        <div class="h2">Cone</div>
+        <div class="col-md-10">
+            @Html.LabelFor(m => m.ConeProperties.Radius, new { @class = "col-md-2 control-label" })
+            @Html.TextBoxFor(m => m.ConeProperties.Radius, new { @class = "form-control" })
+            <br />
+            @Html.LabelFor(m => m.ConeProperties.Height, new { @class = "col-md-2 control-label" })
+            @Html.TextBoxFor(m => m.ConeProperties.Height, new { @class = "form-control" })
+            <br />
+            @Html.LabelFor(m => m.ConeProperties.Volume, new { @class = "col-md-2 control-label" })
+            @Html.TextBoxFor(m => m.ConeProperties.Volume, new { @class = "form-control" })
+            <br />
+            <div class="col-md-offset-5">
+                <input type="submit" value="Calculate" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+@using (Html.BeginForm("CalculateSphere", "VolumeCalculator", FormMethod.Post))
+{
+    <div class="row">
+        <div class="h2">Sphere</div>
+        <div class="col-md-10">
+            @Html.LabelFor(m => m.SphereProperties.Radius, new { @class = "col-md-2 control-label" })
+            @Html.TextBoxFor(m => m.SphereProperties.Radius, new { @class = "form-control" })
+            <br />
+            @Html.LabelFor(m => m.SphereProperties.Volume, new { @class = "col-md-2 control-label" })
+            @Html.TextBoxFor(m => m.SphereProperties.Volume, new { @class = "form-control" })
+            <br />
+            <div class="col-md-offset-5">
+                <input type="submit" value="Calculate" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}

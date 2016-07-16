@@ -1,0 +1,59 @@
+﻿<Window x:Class="VpnMonitor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VpnMonitor"
+        mc:Ignorable="d"
+        AllowDrop="True"
+        Drop="Window_Drop"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.DataContext>
+        <local:VpnMonitorViewModel></local:VpnMonitorViewModel>
+    </Window.DataContext>
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" VerticalAlignment="Center">Network Names:</TextBlock>
+            <ComboBox Grid.Column="1" ItemsSource="{Binding Model.InterfaceNames}" SelectedItem="{Binding Model.NetworkNameSelection}" DropDownOpened="ComboBox_DropDownOpened" DropDownClosed="ComboBox_DropDownClosed"></ComboBox>
+            <local:StatusGumball Grid.Column="2" Width="30" Height="30" Status="{Binding Model.Status}"></local:StatusGumball>
+        </Grid>
+
+        <ListView Grid.Row="1" ItemsSource="{Binding Model.Apps}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="140"></ColumnDefinition>
+                            <ColumnDefinition Width="2"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width ="20"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding AppName}"></TextBlock>
+                        <Border Grid.Column="1" BorderBrush="Black" BorderThickness="1" Margin="1 0 0 0 "/>
+                        <TextBlock Grid.Column="2" Text="{Binding FullPath}"></TextBlock>
+                        <local:StatusGumball Grid.Column="3" Width="12" Height="12" Status="{Binding Status}"></local:StatusGumball>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <TextBlock Grid.Row="1"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Visibility="{Binding Model.DragDropHelpTextVisility}"
+                   Text="Drag and Drop .lnk file or .exe here"/>
+
+    </Grid>
+</Window>
